@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Microsoft.ApplicationInsights.Extensibility;
+using Serilog;
 
 namespace Microsoft.eShopOnDapr.Services.Identity.API;
 
@@ -16,12 +17,14 @@ public static class ProgramExtensions
 
     public static void AddCustomSerilog(this WebApplicationBuilder builder)
     {
+        var services = builder.Services.BuildServiceProvider();
         var seqServerUrl = builder.Configuration["SeqServerUrl"];
 
         Log.Logger = new LoggerConfiguration()
             .ReadFrom.Configuration(builder.Configuration)
             .WriteTo.Console()
             .WriteTo.Seq(seqServerUrl)
+            .WriteTo.ApplicationInsights(services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces)
             .Enrich.WithProperty("ApplicationName", AppName)
             .CreateLogger();
 

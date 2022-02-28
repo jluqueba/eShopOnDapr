@@ -1,6 +1,7 @@
 ﻿var appName = "Shopping Aggregator API";
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationInsightsTelemetry();
 builder.AddCustomSerilog();
 builder.AddCustomSwagger();
 builder.AddCustomAuthentication();

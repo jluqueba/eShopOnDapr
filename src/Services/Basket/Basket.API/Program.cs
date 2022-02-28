@@ -1,6 +1,7 @@
 ﻿var appName = "Basket API";
 var builder = WebApplication.CreateBuilder();
 
+builder.Services.AddApplicationInsightsTelemetry();
 builder.AddCustomSerilog();
 builder.AddCustomSwagger();
 builder.AddCustomMvc();

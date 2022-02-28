@@ -46,6 +46,7 @@ services:
       - IdentityUrl=http://identity-api
       - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
       - SeqServerUrl=http://seq
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
     ports:
       - "5103:80"
       - "50001:50001"
@@ -68,6 +69,7 @@ services:
       - ApiGatewayUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5202
       - IdentityUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5105
       - SeqServerUrl=http://seq
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
     ports:
       - "5104:80"
 
@@ -79,6 +81,7 @@ services:
       - SeqServerUrl=http://seq
       # Temporarily while waiting for https://github.com/dapr/dotnet-sdk/issues/779 to get fixed.
       - ConnectionStrings__CatalogDB=Server=sqldata;Database=Microsoft.eShopOnDapr.Services.CatalogDb;User Id=sa;Password=Pass@word;TrustServerCertificate=true
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
     ports:
       - "5101:80"
       - "50002:50001"
@@ -106,6 +109,7 @@ services:
       - ShoppingAggregatorApiUrlExternal=http://${ESHOP_EXTERNAL_DNS_NAME_OR_IP}:5121
       # Temporarily while waiting for https://github.com/dapr/dotnet-sdk/issues/779 to get fixed.
       - ConnectionStrings__IdentityDB=Server=sqldata;Database=Microsoft.eShopOnDapr.Service.IdentityDb;User Id=sa;Password=Pass@word;TrustServerCertificate=true
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
     ports:
       - "5105:80"
       - "50009:50001"
@@ -132,6 +136,7 @@ services:
       - SeqServerUrl=http://seq
       # Temporarily while waiting for https://github.com/dapr/dotnet-sdk/issues/779 to get fixed.
       - ConnectionStrings__OrderingDB=Server=sqldata;Database=Microsoft.eShopOnDapr.Services.OrderingDb;User Id=sa;Password=Pass@word;TrustServerCertificate=true
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
     ports:
       - "5102:80"
       - "50003:50001"
@@ -154,6 +159,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://0.0.0.0:80
       - SeqServerUrl=http://seq
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
     ports:
       - "5108:80"
       - "50006:50001"
@@ -178,6 +184,7 @@ services:
       - BasketUrlHC=http://basket-api/hc
       - CatalogUrlHC=http://catalog-api/hc
       - IdentityUrlHC=http://identity-api/hc
+      - ApplicationInsights__InstrumentationKey=${INSTRUMENTATION_KEY}
     ports:
       - "5121:80"
       - "50007:50001"

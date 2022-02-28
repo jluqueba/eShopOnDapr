@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Microsoft.ApplicationInsights.Extensibility;
+using Serilog;
 
 var appName = "Blazor UI Host";
 var configuration = GetConfiguration();
@@ -50,6 +51,7 @@ Serilog.ILogger CreateSerilogLogger(IConfiguration configuration)
         .ReadFrom.Configuration(configuration)
         .WriteTo.Console()
         .WriteTo.Seq(seqServerUrl)
+        .WriteTo.ApplicationInsights(TelemetryConfiguration.Active, TelemetryConverter.Traces)
         .Enrich.WithProperty("ApplicationName", appName)
         .CreateLogger();
 }
