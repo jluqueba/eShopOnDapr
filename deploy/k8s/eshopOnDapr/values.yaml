@@ -1,3 +1,4 @@
 namespace: eshopondapr
 externalDnsNameOrIP: 656e1dbda9704cfbb2f2.westeurope.aksapp.io
-instrumentationKey: 1d90e8aa-5475-4743-ad41-348c589f18cb
+daprInstrumentationKey: 9b69e778-cec1-40a7-b091-383c79a4f77f
+servicesInstrumentationKey: 8af29dd4-3656-4270-9c71-6ddb8a1b77b5

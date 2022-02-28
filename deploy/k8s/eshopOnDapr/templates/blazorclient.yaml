@@ -13,6 +13,7 @@ data:
   #IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30008
   ApiGatewayUrlExternal: http://apigateway.{{ .Values.externalDnsNameOrIP}}
   IdentityUrlExternal: http://identity-api.{{ .Values.externalDnsNameOrIP}}
+  ApplicationInsights__InstrumentationKey: {{ .Values.servicesInstrumentationKey}}
 
 ---
 
