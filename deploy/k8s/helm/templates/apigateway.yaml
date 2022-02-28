@@ -234,3 +234,25 @@ spec:
       name: daprgrpc
   selector:
     service: apigateway
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apigateway
+  namespace: {{ .Values.namespace }}
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: apigateway.{{ .Values.externalDnsNameOrIP}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: apigateway
+            port: 
+              number: 80

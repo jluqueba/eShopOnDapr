@@ -9,8 +9,10 @@ metadata:
 data:
   ASPNETCORE_ENVIRONMENT: Development
   ASPNETCORE_URLS: http://0.0.0.0:80
-  ApiGatewayUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30050
-  IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30008
+  #ApiGatewayUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30050
+  #IdentityUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30008
+  ApiGatewayUrlExternal: http://apigateway.{{ .Values.externalDnsNameOrIP}}
+  IdentityUrlExternal: http://identity-api.{{ .Values.externalDnsNameOrIP}}
 
 ---
 
@@ -71,3 +73,25 @@ spec:
       name: http
   selector:
     service: blazorclient
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blazor-client
+  namespace: {{ .Values.namespace }}
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: eshopondapr.{{ .Values.externalDnsNameOrIP}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: blazor-client
+            port: 
+              number: 80

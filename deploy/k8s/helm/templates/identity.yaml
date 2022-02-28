@@ -10,7 +10,7 @@ data:
   ASPNETCORE_ENVIRONMENT: Development
   ASPNETCORE_URLS: http://0.0.0.0:80
   SeqServerUrl: http://seq
-  BlazorClientUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30000
+  BlazorClientUrlExternal: http://eshopondapr.{{ .Values.externalDnsNameOrIP}}
   BasketApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30005
   OrderingApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30002
   ShoppingAggregatorApiUrlExternal: http://{{ .Values.externalDnsNameOrIP}}:30006
@@ -82,3 +82,25 @@ spec:
       name: http
   selector:
     service: identity
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: identity-api
+  namespace: {{ .Values.namespace }}
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: identity-api.{{ .Values.externalDnsNameOrIP}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: identity-api
+            port: 
+              number: 80

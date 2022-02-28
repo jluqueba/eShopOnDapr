@@ -55,3 +55,25 @@ spec:
       name: smtp
   selector:
     service: mailserver
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mailserver
+  namespace: {{ .Values.namespace }}
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: mailserver.{{ .Values.externalDnsNameOrIP}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: mailserver
+            port: 
+              number: 80
