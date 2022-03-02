@@ -13,13 +13,15 @@ spec:
     value: 25
   - name: user
     secretKeyRef:
-      name: eshop-secrets
+      name: SmtpUser
       key: SmtpUser
   - name: password
     secretKeyRef:
-      name: eshop-secrets
+      name: SmtpPassword
       key: SmtpPassword
   - name: skipTLSVerify
     value: true
+auth:
+  secretStore: eshop-kvsecretstore
 scopes:
   - ordering-api

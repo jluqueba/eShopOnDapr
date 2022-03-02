@@ -2,3 +2,6 @@ namespace: eshopondapr
 externalDnsNameOrIP: 656e1dbda9704cfbb2f2.westeurope.aksapp.io
 daprInstrumentationKey: 9b69e778-cec1-40a7-b091-383c79a4f77f
 servicesInstrumentationKey: 8af29dd4-3656-4270-9c71-6ddb8a1b77b5
+keyvaultName: laliga-daproveraks-kvt
+azureTenantId: 72f988bf-86f1-41af-91ab-2d7cd011db47
+azureClientId: f2817ca5-6d4e-4fba-895e-557d2eab1611
