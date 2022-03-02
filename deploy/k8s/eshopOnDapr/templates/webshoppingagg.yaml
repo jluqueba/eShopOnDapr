@@ -14,7 +14,7 @@ data:
   BasketUrlHC: http://basket-api/hc
   CatalogUrlHC: http://catalog-api/hc
   IdentityUrlHC: http://identity-api/hc
-  ApplicationInsights__InstrumentationKey: {{ .Values.servicesInstrumentationKey}}
+  APPINSIGHTS_INSTRUMENTATIONKEY: {{ .Values.servicesInstrumentationKey}}
 
 ---
 
