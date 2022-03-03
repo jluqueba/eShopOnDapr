@@ -44,7 +44,7 @@ spec:
     spec:
       containers:
         - name: webshoppingagg
-          image: eshopdapr/webshoppingagg:latest
+          image: {{ .Values.registry}}/webshoppingagg:latest
           imagePullPolicy: IfNotPresent
           ports:
             - name: http
